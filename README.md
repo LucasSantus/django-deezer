@@ -8,9 +8,9 @@ Se você quiser dar uma olhada em todas as telas do aplicativo, elas estão [aqu
 
 A ideia é:
 
-_"Criar uma aplicação sobre Música com a api deezer, com intuito de promover o aprendizado sobre apis utilizando o framework Django"_
+_"Criar uma aplicação sobre Música com a api deezer, com intuito de promover o aprendizado sobre api's utilizando o framework Django"_
 
-Este repositório tem foco, na criação de uma aplicação relacionada a Músicas, onde utilizando a api deezer, iria recuperar os dados relacionados as músicas escolhidas pelo dev e listadas em uma tela totalmente dinamica.
+Este repositório tem foco, na criação de uma aplicação relacionada a Música, utilizando a api deezer, iria recuperar os dados relacionados as músicas pesquisadas pelo dev&usuário e listadas em uma tela totalmente dinamica.
 
 --------------------------------------------------------------------------------------
 
