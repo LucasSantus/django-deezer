@@ -8,15 +8,15 @@ Se você quiser dar uma olhada em todas as telas do aplicativo, elas estão [aqu
 
 A ideia é:
 
-_"Criar uma aplicação sobre Música utilizando uma api-rest, com intuito de promover o aprendizado utilizando o framework Django"_
+_"Criar uma aplicação sobre Música com a api deezer, com intuito de promover o aprendizado sobre apis utilizando o framework Django"_
 
-Este repositório tem foco, na criação de uma aplicação&api relacionada a Música, onde a mesma iria conter o padrão CRUD.
+Este repositório tem foco, na criação de uma aplicação relacionada a Músicas, onde utilizando a api deezer, iria recuperar os dados relacionados as músicas escolhidas pelo dev e listadas em uma tela totalmente dinamica.
 
 --------------------------------------------------------------------------------------
 
 ### Por Que?
 
-Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer funcionalidade/melhoria que você possa relatar para melhora-lo.
+Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer melhoria que você possa relatar para melhora-lo.
 
 Você pode usar este projeto como quiser, seja para estudar, fazer melhorias, você que manda!
 
