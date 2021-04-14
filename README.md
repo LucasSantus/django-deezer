@@ -37,9 +37,9 @@ Dentro da pasta onde o projeto irá ficar armazenado, abra o terminal.
 ```
 $ git init
 
-$ git clone git@github.com:LucasSantus/music.git
+$ git clone git@github.com:LucasSantus/deezer.git
 
-$ cd music
+$ cd deezer
 ```
 
 **Preparando o Ambiente Virtual**
@@ -59,7 +59,7 @@ $ pip install -r requirements.txt
 **Preparando o Projeto**
 
 ```
-$ python manage.py makemigrations musica
+$ python manage.py makemigrations deezer
 
 $ python manage.py migrate
 
@@ -97,4 +97,4 @@ Obrigado por me visitar e boa codificação!
 
 ### License
 
-Este projeto está licenciado sob a Licença MIT License - veja o [LICENSE.md](https://github.com/LucasSantus/music/blob/master/LICENSE) para melhores detalhes.
+Este projeto está licenciado sob a Licença MIT License - veja o [LICENSE.md](https://github.com/LucasSantus/deezer/blob/master/LICENSE) para melhores detalhes.
