@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main>
+    <div class="col s12 m6 l10 center">
+        <h3 class="text-theme truncate">Music</h3>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <div class="input-field col s12">
+                <i class="material-icons prefix" type="submit">search</i>
+                <input type="text" name="pesquisa" id="pesquisa">
+                <label for="pesquisa">Pesquisar Música</label>
+            </div>
+        </div>
+    </form>
+
+    {% if messages %}
+        <div class="container center">
+            <div class="col s6">
+                <div class="container">
+                    <div class="container">
+                        <div class="container">
+                            <div class="container">
+                                <div class="card red">
+                                    <ul class="messages white-text">
+                                        {% for message in messages %}
+                                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                {% for music in list_deezer.data %}
+                    {{music.title}}
+                    {{music.preview}}
+                    <img src="{{music.md5_image}}">
+                {% endfor %} 
+            </div>
+        </div>    
+    </div>
+</main>
+
+{% endblock content %}

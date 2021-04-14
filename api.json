@@ -1,0 +1,46 @@
+{
+    'data': [
+                {
+                    'id': 629163562, 
+                    'readable': True, 
+                    'title': '4 Estações', 
+                    'title_short': '4 Estações', 
+                    'title_version': '', 
+                    'link': 'https://www.deezer.com/track/629163562', 
+                    'duration': 166, 
+                    'rank': 475106, 
+                    'explicit_lyrics': False, 
+                    'explicit_content_lyrics': 0, 
+                    'explicit_content_cover': 2, 
+                    'preview': 'https://cdns-preview-c.dzcdn.net/stream/c-c12ac52e4e8efac532f785b2631c7fcf-5.mp3', 
+                    'md5_image': '26c5ba157d86a3411faf770560009ee4',
+                    
+                    'artist': {
+                        'id': 13447203, 
+                        'name': 'Konai', 
+                        'link': 'https://www.deezer.com/artist/13447203', 'picture': 'https://api.deezer.com/artist/13447203/image', 
+                        'picture_small': 'https://cdns-images.dzcdn.net/images/artist/099f85c27e1c58f9861a2d2b80302fc3/56x56-000000-80-0-0.jpg', 
+                        'picture_medium': 'https://cdns-images.dzcdn.net/images/artist/099f85c27e1c58f9861a2d2b80302fc3/250x250-000000-80-0-0.jpg', 
+                        'picture_big': 'https://cdns-images.dzcdn.net/images/artist/099f85c27e1c58f9861a2d2b80302fc3/500x500-000000-80-0-0.jpg', 
+                        'picture_xl': 'https://cdns-images.dzcdn.net/images/artist/099f85c27e1c58f9861a2d2b80302fc3/1000x1000-000000-80-0-0.jpg', 
+                        'tracklist': 'https://api.deezer.com/artist/13447203/top?limit=50', 
+                        'type': 'artist'
+                    },
+
+                    'album': {
+                        'id': 86617302, 
+                        'title': '4 Estações', 
+                        'cover': 'https://api.deezer.com/album/86617302/image', 
+                        'cover_small': 'https://cdns-images.dzcdn.net/images/cover/26c5ba157d86a3411faf770560009ee4/56x56-000000-80-0-0.jpg', 
+                        'cover_medium': 'https://cdns-images.dzcdn.net/images/cover/26c5ba157d86a3411faf770560009ee4/250x250-000000-80-0-0.jpg', 
+                        'cover_big': 'https://cdns-images.dzcdn.net/images/cover/26c5ba157d86a3411faf770560009ee4/500x500-000000-80-0-0.jpg', 
+                        'cover_xl': 'https://cdns-images.dzcdn.net/images/cover/26c5ba157d86a3411faf770560009ee4/1000x1000-000000-80-0-0.jpg', 
+                        'md5_image': '26c5ba157d86a3411faf770560009ee4', 
+                        'tracklist': 'https://api.deezer.com/album/86617302/tracks', 
+                        'type': 'album'
+                    }, 
+                    'type': 'track',
+                }
+            ], 
+        'total': 1
+}

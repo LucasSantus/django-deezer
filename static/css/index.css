@@ -1,0 +1,16 @@
+/* BODY */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+/* MAIN */
+main {
+    flex: 1 0 auto;
+}
+
+/* Texto de ínicio */
+.text-theme{
+    width: 100%;
+    font-size: 60px;
+} 
