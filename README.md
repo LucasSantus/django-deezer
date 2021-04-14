@@ -74,13 +74,18 @@ $ python manage.py runserver
 
 **Acessando o Projeto**
 
-Visualize o projeto no navegador: http://127.0.0.1:8000/
+Visualize o projeto no navegador: 
+```
+http://127.0.0.1:8000/
+```
 
 **Acessando o Admin**
 
 Adicione 'admin/' há URL:
 
+```
 http://127.0.0.1:8000/admin/
+```
 
 --------------------------------------------------------------------------------------
 
