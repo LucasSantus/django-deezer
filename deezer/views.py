@@ -22,6 +22,7 @@ def index(request):
 
         list_deezer = json.loads(list_musicas.text)
 
+        print("PESQUISA DE MÚSICA\n\n\n")
         print(list_deezer)
 
         if not list_deezer:
@@ -33,25 +34,25 @@ def index(request):
 
     return render(request, "deezer/index.html", context)
 
-    # api_request = requests.get("http://127.0.0.1:8000/api/list/?search=")
-    # list_musicas = json.loads(api_request.text)
-    
-    # if request.POST:
-    #     pesquisa = request.POST.get("pesquisa", None)
-                            
-    #     api_request = None
-    #     list_musicas = None
+def album(request, id_album):
 
-    #     api_request = requests.get("http://127.0.0.1:8000/api/list/?search="+pesquisa)
-    #     list_musicas = json.loads(api_request.text)
+    url = "https://deezerdevs-deezer.p.rapidapi.com/album/%7B1%7D"
 
-    #     if not list_musicas: 
-    #         api_request = requests.get("http://127.0.0.1:8000/api/music/?format=json")
-    #         list_musicas = json.loads(api_request.text)
+    headers = {
+        'x-rapidapi-key': "a9b2a659d9msh72c3634862390e2p1f856ejsn62022b3ffa9a",
+        'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com"
+    }
 
-    #         messages.error(request, "Música não encontrada!")
+    album = requests.request("GET", url, headers=headers)
 
-    # context = {
-    #     "list_musicas": list_musicas,
-    # }
-    # return render(request, "musica/index.html", context)
+    list_deezer = json.loads(album.text)
+
+    print("\n\n")
+    print(list_deezer)
+    print("\n\n")
+
+    context = {
+        "list_deezer": list_deezer,
+    }
+
+    return render(request, "deezer/album.html", context)

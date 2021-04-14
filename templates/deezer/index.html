@@ -10,10 +10,12 @@
     <form method="POST">
         {% csrf_token %}
         <div class="container">
-            <div class="input-field col s12">
-                <i class="material-icons prefix" type="submit">search</i>
-                <input type="text" name="pesquisa" id="pesquisa">
-                <label for="pesquisa">Pesquisar Música</label>
+            <div class="container">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix" type="submit">search</i>
+                    <input type="text" name="pesquisa" id="pesquisa">
+                    <label for="pesquisa">Pesquisar Música</label>
+                </div>
             </div>
         </div>
     </form>
@@ -39,34 +41,25 @@
             </div>
         </div>
     {% endif %}
-
     <div class="container">
-        <div class="row">
-            <div class="col s12">
-                {% for music in list_deezer.data %}
-                <div class="col s6">
-                    <div class="card z-depth-4">
-                        <div class="card horizontal">
-                                <div class="card-image">
-                                    <img src="{{music.album.cover_small}}">
-                                </div>
-            
-                            
-                            <div class="card-content">
-                                <span style="font-size: 18px;" class="card-title activator grey-text text-darken-4">{{music.title}}</span>
-                                    <li class="divider grey"></li>
-                                    <li><strong>Cantor:</strong> {{music.artist.name}}</li>
-                                    <li class="divider grey"></li>
-                                    <li><strong>Albúm:</strong> {{music.album.title}}</li>
-                                    <li class="divider grey"></li>
-                                    <p><a class= "deep-orange-text text-lighten-1" href="{{music.preview}}">Preview</a></p> 
-                            </div>
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collection">
+                        {% for music in list_deezer.data %}
+                            <li class="collection-item avatar">
+                            <img src="{{music.album.cover_small}}" alt="" class="circle">
+                            <span class="title truncate">{{music.title}}</span>
+                            <p class="truncate">{{music.artist.name}}<br>
+                                <a href="{% url 'album' music.album.id %}">{{music.album.title}}</a>
+                            </p>
+                                <a href="{{music.preview}}" class="secondary-content"><i class="material-icons">play_circle_outline</i></a>
+                            </li>
+                        {% endfor %} 
+                    </ul>
                 </div>
-            {% endfor %} 
-            </div>
-        </div>    
+            </div>    
+        </div>
     </div>
 </main>
 
