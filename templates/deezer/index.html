@@ -44,10 +44,27 @@
         <div class="row">
             <div class="col s12">
                 {% for music in list_deezer.data %}
-                    {{music.title}}
-                    {{music.preview}}
-                    <img src="{{music.md5_image}}">
-                {% endfor %} 
+                <div class="col s6">
+                    <div class="card z-depth-4">
+                        <div class="card horizontal">
+                                <div class="card-image">
+                                    <img src="{{music.album.cover_small}}">
+                                </div>
+            
+                            
+                            <div class="card-content">
+                                <span style="font-size: 18px;" class="card-title activator grey-text text-darken-4">{{music.title}}</span>
+                                    <li class="divider grey"></li>
+                                    <li><strong>Cantor:</strong> {{music.artist.name}}</li>
+                                    <li class="divider grey"></li>
+                                    <li><strong>Albúm:</strong> {{music.album.title}}</li>
+                                    <li class="divider grey"></li>
+                                    <p><a class= "deep-orange-text text-lighten-1" href="{{music.preview}}">Preview</a></p> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
             </div>
         </div>    
     </div>
