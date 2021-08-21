@@ -1,46 +1,23 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}
+    Dashboard | Deezer
+{% endblock %}
 
-<main>
-    <div class="col s12 m6 l10 center">
-        <h3 class="text-theme truncate">Music</h3>
+{% block content %}
+    <div class="container w-40">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-field col s12">
+                <i class="material-icons prefix" type="submit">search</i>
+                <input type="text" name="pesquisa" id="pesquisa">
+                <label for="pesquisa">Pesquisar Música</label>
+            </div>
+        </form>
     </div>
 
-    <form method="POST">
-        {% csrf_token %}
-        <div class="container">
-            <div class="container">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix" type="submit">search</i>
-                    <input type="text" name="pesquisa" id="pesquisa">
-                    <label for="pesquisa">Pesquisar Música</label>
-                </div>
-            </div>
-        </div>
-    </form><br>
 
-    {% if messages %}
-        <div class="container center">
-            <div class="col s6">
-                <div class="container">
-                    <div class="container">
-                        <div class="container">
-                            <div class="container">
-                                <div class="card red">
-                                    <ul class="messages white-text">
-                                        {% for message in messages %}
-                                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-        </div>
-    {% endif %}
+
     <div class="container">
         <div class="container">
             {% if list.tracks.data %}
@@ -68,24 +45,20 @@
                 <div class="row">
                     <div class="col s12">
                         <ul class="collection">
-                            
-                                {% for music in list.data %}
-                                    <li class="collection-item avatar">
-                                        <img src="{{music.album.cover_small}}" alt="" class="circle">
-                                        <span class="title truncate">{{music.title}}</span>
-                                        <p class="truncate">{{music.artist.name}}<br>
-                                            <a href="{% url 'album' music.album.id %}">{{music.album.title}}</a>
-                                        </p>
-                                        <a href="{{music.preview}}" class="secondary-content"><i class="material-icons">play_circle_outline</i></a>
-                                    </li>
-                                {% endfor %} 
-                            
+                            {% for music in list.data %}
+                                <li class="collection-item avatar">
+                                    <img src="{{music.album.cover_small}}" alt="" class="circle">
+                                    <span class="title truncate">{{music.title}}</span>
+                                    <p class="truncate">{{music.artist.name}}<br>
+                                        <a href="{% url 'album' music.album.id %}">{{music.album.title}}</a>
+                                    </p>
+                                    <a href="{{music.preview}}" class="secondary-content"><i class="material-icons">play_circle_outline</i></a>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div> 
             {% endif %}
         </div>
     </div>
-</main>
-
 {% endblock content %}

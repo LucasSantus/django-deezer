@@ -1,59 +1,139 @@
 {% load static %}
 
-<html>
+<html> 
     <head>
         <!-- Import Material Icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <!--Import Font Awesome-->
+        <!-- Import Font Awesome-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <!--Import CSS Materialize-->
-        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection"/>
-        
-        <!-- Import Java Script Materialize -->
-        <script type="text/javascript" src="{% static 'js/materialize.min.js' %}" defer></script>
+        <!-- Import CSS Materialize-->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize/materialize.min.css' %}" media="screen,projection"/>
 
-        <!-- Let browser know website is optimized for mobile -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <!-- Import CSS HoldON -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/holdon/hold-on.min.css' %}">
 
         <!-- Import CSS Personalizado -->
         <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
 
-        <!-- Import Java Script Personalizado -->
-        <script type="text/javascript" src="{% static 'js/index.js' %}" defer></script>
+        <!-- Import Classes Personalizadas -->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/custom-class/custom-class.css' %}">
 
-        <!-- Import HoldON -->
-        <script type="text/javascript" src="{% static 'js/HoldOn.js' %}" defer></script>
+        <!-- Let browser know website is optimized for mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
-        <script type="text/javascript" src="{% static 'js/HoldOn.min.js' %}" defer></script>
+        <!-- Estilização da Página -->
+        {% block css %}
+        {% endblock %}
 
-        <!-- Import JQuery -->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+        <!-- Título da Página -->
+        <title>
+            {% block title %}
+                Deezer
+            {% endblock %}
+        </title>
     </head>
-    
-    <body>
+
+    <body class="bg-body">
+        
+        <!-- HEADER -->
         <header>
-            <div class="navbar-fixed">
-                <nav>
-                    <div class="nav-wrapper teal accent-4">
-                        <a href="/" class="brand-logo" ><img src="{% static 'logo.png' %}" width="160" height="50px"></a>
-                    </div>
-                </nav>
-            </div>
+            <!-- NAVBAR -->
+            <nav class="bg-primary">
+                <div class="nav-wrapper container">
+                    <a href="/" class="brand-logo fs-3">Deezer</a>
+                    <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+            </nav>
         </header>
 
+        <!-- MAIN -->
         <main>
             {% block content %}
             {% endblock %}
+
+            <!-- Modal Structure -->
+            {% if modal %}
+                <div id="modal-back" class="modal">
+                    <div class="modal-content">
+                        <h4>{{modal.title}}</h4>
+                        <p>{{modal.content}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="modal-close bt-secondary btn btn-flat z-depth-2">SAIR</a>
+                        {% if modal.url_id %}
+                            <a href="{% url modal.url modal.url_id %}" class="modal-close bt-primary btn btn-flat z-depth-2">CONTINUAR</a>
+                        {% else %}
+                            <a href="{% url modal.url %}" class="modal-close bt-primary btn btn-flat z-depth-2">CONTINUAR</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
         </main>
-        
-        <footer class="page-footer teal accent-4">
-            <div class="row" style="width: 90%;">
-                <div class="col l6 s12">
-                    <span>&copy; 2020-2021 Copyright Music, All rights reserved.</span>
+
+        <!-- FOOTER -->
+        <footer class="page-footer transparent">
+            <div class="row w-70">
+                <div class="col s12 center text-primary fs-6">
+                    <span>&copy; 2020 - {{data}} Copyright Deezer, Todos os direitos reservados.</span>
                 </div>
             </div>
         </footer>
+
+        <!-- Import JQuery -->
+        <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
+
+        <!-- Import HoldON -->
+        <script src="{% static 'js/holdon/hold-on.min.js' %}"></script>
+
+        <!-- Import Java Script Materialize -->
+        <script type="text/javascript" src="{% static 'js/materialize/materialize.min.js' %}"></script>
+
+        <!-- Inicialização -->
+        <script>
+            $(document).ready(function(){
+                $(window).bind('beforeunload', function() {
+                    var options = {
+                        theme: "sk-falding-circle",
+                        message: 'Aguarde...',
+                        backgroundColor: "bg-dark",
+                        textColor: "white"
+                    };
+                    HoldOn.open(options);
+                });
+
+                $(window).load(function() {
+                    HoldOn.close();
+                });
+            });
+        </script>
+
+        <!-- Mensagens -->
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <script>
+                        M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-success'});
+                    </script>
+                {% elif message.tags == 'error' %}
+                    <script>
+                        M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-danger'});
+                    </script>
+                {% elif message.tags == 'info' %}
+                    <script>
+                        M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-info'});
+                    </script>
+                {% elif message.tags == 'warning' %}
+                    <script>
+                        M.toast({html: '{{message}}', displayLength:4000, classes:'rounded bt-warning'});
+                    </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <!-- Script da Página -->
+        {% block javascript %}
+        {% endblock %}
     </body>
 </html>
