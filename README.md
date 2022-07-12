@@ -57,6 +57,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 - [Django Form Bootstrap V5](https://pypi.org/project/django-bootstrap-v5/)
 - [Django Debug Toolbar 3.2.4](https://pypi.org/project/django-debug-toolbar/3.2.4/)
+- [API Deezer](https://rapidapi.com/deezerdevs/api/deezer-1?endpoint=53aa5085e4b07e1f4ebeb429)
 
 --------------------------------------------------------------------------------------
 
