@@ -2,16 +2,18 @@
 
 {% load static %}
 
+{% load tags_extras %}
+
 {% block content %}
     <div class="my-5 p-5">
         <div>
             <table id="dataTable" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Música</th>
-                        <th>Artista</th>
-                        <th>Album</th>
-                        <th><span class="material-icons">time</span></th>
+                        <th class="text-muted hover">Música</th>
+                        <th class="text-muted hover">Artista</th>
+                        <th class="text-muted hover">Album</th>
+                        <th class="text-muted hover"><span class="material-icons">schedule</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,7 +22,7 @@
                             <td>{{music.title}}</td>
                             <td>{{music.artist.name}}</td>
                             <td>{{music.album.title}}</td>
-                            <td>61</td>
+                            <td>{{music.duration|convert_seconds_in_minutes}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
