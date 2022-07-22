@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load tags_extras %}
+
+{% block content %}
+    <div class="my-5 p-5">
+        <div>
+            <table id="dataTable" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="text-muted hover">Música</th>
+                        <th class="text-muted hover">Artista</th>
+                        <th class="text-muted hover">Album</th>
+                        <th class="text-muted hover"><span class="material-icons">schedule</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for music in musics.tracks.data %}
+                        <tr>
+                            <td>{{music.title}}</td>
+                            <td>{{music.artist.name}}</td>
+                            <td>{{music.album.title}}</td>
+                            <td>{{music.duration|convert_seconds_in_minutes}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Música</th>
+                        <th>Artista</th>
+                        <th>Album</th>
+                        <th><span class="material-icons">time</span></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- {% if musics.tracks.data %}
+            {% for music in musics.tracks.data %}
+                {{music}}
+            {% endfor %}
+        {% elif musics.data %}
+            {% for music in musics.data %}
+                {{music}}
+            {% endfor %}
+        {% endif %} -->
+    </div>
+{% endblock %}
+
+{% block css %}
+    <!-- Import CSS Datatable -->
+    <link href="{% static 'css/datatable/datatable.min.css' %}" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet"> -->
+
+
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Import Java Script Bootstrap -->
+    <!-- <script type="text/javascript" src="{% static 'js/datatable/jquery.datatable.min.js' %}"></script> -->
+
+    <!-- Import Java Script Bootstrap -->
+    <!-- <script type="text/javascript" src="{% static 'js/datatable/datatable.min.js' %}"></script> -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+{% endblock %}
+
+<div class="container w-40">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-field col s12">
+                <i class="material-icons prefix" type="submit">search</i>
+                <input type="text" name="pesquisa" id="pesquisa">
+                <label for="pesquisa">Pesquisar Música</label>
+            </div>
+        </form>
+    </div>
+
+<div class="container">
+    <div class="container">
+        {% if musics.tracks.data %}
+            <h4 class=center>Top Brasil</h4>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collection">
+                        <ol>
+                            {% for music in musics.tracks.data %}
+                                <li class="collection-item avatar">
+                                    <img src="{{music.album.cover_small}}" alt="" class="circle">
+                                    <span class="title truncate">{{music.title}}</span>
+                                    <p class="truncate">{{music.artist.name}}<br>
+                                        <a href="{% url 'album' music.album.id %}">{{music.album.title}}</a>
+                                    </p>
+                                    <a href="{{music.preview}}" class="secondary-content"><i class="material-icons">play_circle_outline</i></a>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </ul>
+                </div>
+            </div>
+        {% elif musics.data %}
+            <h4 class=center>Pesquisa</h4>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collection">
+                        {% for music in musics.data %}
+                            <li class="collection-item avatar">
+                                <img src="{{music.album.cover_small}}" alt="" class="circle">
+                                <span class="title truncate">{{music.title}}</span>
+                                <p class="truncate">{{music.artist.name}}<br>
+                                    <a href="{% url 'album' music.album.id %}">{{music.album.title}}</a>
+                                </p>
+                                <a href="{{music.preview}}" class="secondary-content"><i class="material-icons">play_circle_outline</i></a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div> 
+        {% endif %}
+    </div>
+</div>

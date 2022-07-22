@@ -1,0 +1,28 @@
+/* BARRA ROLAGEM PERSONALIZADA */
+html {
+    scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+    width: 10px
+} 
+
+body::-webkit-scrollbar-thumb {   
+    background-color: darkgrey;   
+}
+
+/* BOOTSTRAP SELECTOR */
+.selector-for-some-widget {
+    box-sizing: content-box;
+}
+
+/* FOOTER */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
