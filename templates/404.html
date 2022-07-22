@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex flex-column justify-content-center align-items-center min-h-100 w-100">
+        <span class="error__404 text-muted">Erro 404!</span>
+        <p class="page__not__found text-muted">Página não encontrada!</p>
+        <a href="/">Dashboard</a>
+    </div>
+{% endblock %}
+
+{% block css %}
+    <style>
+        .error__404{
+            font-size: 6rem;
+        }
+        .page__not__found{
+            font-size: 1.5rem;
+        }
+    </style>
+{% endblock %}
