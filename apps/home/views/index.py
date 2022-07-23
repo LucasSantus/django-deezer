@@ -6,7 +6,7 @@ import requests
 import json
 
 def index(request):
-    url = "https://deezerdevs-deezer.p.rapidapi.com/playlist/1111141961"
+    url = "https://deezerdevs-deezer.p.rapidapi.com/playlist/10552995982"
     response = requests.request("GET", url, headers=API_HEADERS)
 
     if request.POST:
@@ -16,9 +16,6 @@ def index(request):
         response = requests.request("GET", url, headers=API_HEADERS, params=query)
 
     musics = json.loads(response.text)
-
-    if not musics:
-        messages.error(request, DEFAULT_MESSAGES['MUSIC_NOT_FOUND'])
 
     print("\n\n\n\n\n\n\n\n\n\n\n")
     print(musics)

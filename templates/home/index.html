@@ -6,34 +6,40 @@
 
 {% block content %}
     <div class="my-5 p-5">
+        <div class="d-flex">
+            <img src="{{musics.picture_xl}}" width="200">
+            <div class="d-flex flex-column ps-5">
+                <span class="fs-2 fw-bolder">{{musics.title}}</span>
+                <div><span class="material-icons bg-secondary fs-6 p-2 rounded-pill me-2">person</span>{{musics.creator.name}}</div>
+                <span class="">{{musics.description}}</span>
+                <span>{{musics.nb_tracks}} faixas - {{musics.duration|convert_seconds_in_hours}} </span>
+            </div>
+        </div>
         <div>
-            <table id="dataTable" class="table table-striped" style="width:100%">
+            <table id="dataTable" class="table" style="width:100%">
                 <thead>
                     <tr>
-                        <th class="text-muted hover">Música</th>
-                        <th class="text-muted hover">Artista</th>
-                        <th class="text-muted hover">Album</th>
-                        <th class="text-muted hover"><span class="material-icons">schedule</span></th>
+                        <th class="hover">Música</th>
+                        <th class="hover">Artista</th>
+                        <th class="hover">Album</th>
+                        <th class="hover">Adicionada</th>
+                        <th class="hover"><span class="material-icons fs-5 d-flex">schedule</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for music in musics.tracks.data %}
                         <tr>
-                            <td>{{music.title}}</td>
-                            <td>{{music.artist.name}}</td>
-                            <td>{{music.album.title}}</td>
+                            <td class="truncate">
+                                <img src="{{music.album.cover_medium}}" width="40">
+                                <span class="ps-2">{{music.title}}</span>
+                            </td>
+                            <td class="truncate">{{music.artist.name}}</td>
+                            <td class="truncate">{{music.album.title}}</td>
+                            <td>{{music.time_add|convert_number_in_date}}</td>
                             <td>{{music.duration|convert_seconds_in_minutes}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Música</th>
-                        <th>Artista</th>
-                        <th>Album</th>
-                        <th><span class="material-icons">time</span></th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- {% if musics.tracks.data %}
@@ -47,6 +53,8 @@
         {% endif %} -->
     </div>
 {% endblock %}
+
+https://deezer.page.link/rMBmWMFMRiiipG8d6
 
 {% block css %}
     <!-- Import CSS Datatable -->

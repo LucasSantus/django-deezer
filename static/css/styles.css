@@ -1,3 +1,19 @@
+/* HOVER */
+.hover:hover{
+    opacity: .6 !important;
+}
+
+th{
+    border-bottom-color: #EAEAEA !important;
+    color: #6c757d !important;
+    font-weight: 300;
+}
+
+td{
+    border: none !important;
+}
+
+
 /* BARRA ROLAGEM PERSONALIZADA */
 html {
     scroll-behavior: smooth;
