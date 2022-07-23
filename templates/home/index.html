@@ -51,9 +51,6 @@
 {% block css %}
     <!-- Import CSS Datatable -->
     <link href="{% static 'css/datatable/datatable.min.css' %}" rel="stylesheet">
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet"> -->
-
 
 {% endblock %}
 
@@ -70,7 +67,14 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#dataTable').DataTable();
+            $('#dataTable').DataTable({
+                paging: false,
+                ordering: true,
+                info: false,
+                searching: false,
+                autoWidth: true,
+                deferRender: true,
+            });
         });
     </script>
 {% endblock %}
