@@ -9,11 +9,6 @@ th{
     font-weight: 300;
 }
 
-td{
-    border: none !important;
-}
-
-
 /* BARRA ROLAGEM PERSONALIZADA */
 html {
     scroll-behavior: smooth;
