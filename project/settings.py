@@ -9,13 +9,11 @@ sys.path.append(
     os.path.join(BASE_DIR, "apps")
 )
 
-# SECRET_KEY = 'django-insecure-vs=5ra!k(6nnup*rp3c!0e6^00314p&trphzp)$93%^n!^ac67'
-
 SECRET_KEY = str(os.environ.get('SECRET_KEY', "django-insecure-900u2i6xbp12y#l7-%ch9h(w(jxj17n)c1btv1p=$6$iz27t7m"))
 
 DEBUG = int(os.environ.get('DEBUG', 1))
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "deezer-django.herokuapp.com"]
 
 INTERNAL_IPS = ('*')
 
