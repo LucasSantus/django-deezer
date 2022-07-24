@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load tags_extras %}
+
+{% block content %}
+    <div class="my-5 p-5">
+        <div class="row">
+            <div class="col-12 col-md-auto">
+                <img src="{{musics.picture_xl}}" width="200" height="200" alt="Imagem da playlist">
+            </div>
+            <div class="col-12 col-md-auto">
+                <span class="fs-2 fw-bolder">{{musics.title}}</span>
+                <div>
+                    <span class="material-icons bg-secondary fs-6 p-2 rounded-pill me-2" style="background-color: #DFDEE4 !important; color: #C1C2CA !important;">person</span>{{musics.creator.name}}
+                </div>
+                <div class="pt-3 pb-1">
+                    <span>{{musics.description}}</span>
+                </div>
+                <span>{{musics.nb_tracks}} faixas - {{musics.duration|convert_seconds_in_hours}} </span>
+            </div>
+        </div>
+        <div>
+            <table id="dataTable" class="table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="hover">Música</th>
+                        <th class="hover">Artista</th>
+                        <th class="hover">Album</th>
+                        <th class="hover">Adicionada</th>
+                        <th class="hover">
+                            <span class="material-icons fs-5 d-flex">schedule</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for music in musics.tracks.data %}
+                        <tr class="hover">
+                            <td class="truncate">
+                                <img src="{{music.album.cover_medium}}" width="40" alt="Imagem do Album {{music.album.title}}">
+                                <a href="{{music.preview}}">
+                                    <span class="ps-2">{{music.title}}</span>
+                                </a>
+                            </td>
+                            <td class="truncate">{{music.artist.name}}</td>
+                            <td class="truncate">{{music.album.title}}</td>
+                            <td>{{music.time_add|convert_number_in_date}}</td>
+                            <td>{{music.duration|convert_seconds_in_minutes}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- {% if musics.tracks.data %}
+            {% for music in musics.tracks.data %}
+                {{music}}
+            {% endfor %}
+        {% elif musics.data %}
+            {% for music in musics.data %}
+                {{music}}
+            {% endfor %}
+        {% endif %} -->
+    </div>
+{% endblock %}
+
+https://deezer.page.link/rMBmWMFMRiiipG8d6
+
+{% block css %}
+    <!-- Import CSS Datatable -->
+    <link href="{% static 'css/datatable/datatable.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/datatable/datatable.bootstrap.fixed-header.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/datatable/datatable.bootstrap.responsive.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block script %}
+    <!-- Import Java Script Bootstrap -->
+    <script type="text/javascript" src="{% static 'js/datatable/jquery.datatable.min.js' %}"></script>
+
+    <!-- Import Java Script Bootstrap -->
+    <script type="text/javascript" src="{% static 'js/datatable/datatable.min.js' %}"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.2.4/js/dataTables.fixedHeader.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dataTable').DataTable({
+                paging: false,
+                ordering: true,
+                info: false,
+                autoWidth: true,
+                deferRender: true,
+                responsive: true
+            });
+        });
+    </script>
+{% endblock %}
+
+<div class="container w-40">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-field col s12">
+                <i class="material-icons prefix" type="submit">search</i>
+                <input type="text" name="pesquisa" id="pesquisa">
+                <label for="pesquisa">Pesquisar Música</label>
+            </div>
+        </form>
+    </div>
+
+<div class="container">
+    <div class="container">
+        {% if musics.tracks.data %}
+            <h4 class=center>Top Brasil</h4>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collection">
+                        <ol>
+                            {% for music in musics.tracks.data %}
+                                <li class="collection-item avatar">
+                                    <img src="{{music.album.cover_small}}" alt="" class="circle">
+                                    <span class="title truncate">{{music.title}}</span>
+                                    <p class="truncate">{{music.artist.name}}<br>
+                                        <a href="{% url 'album' music.album.id %}">{{music.album.title}}</a>
+                                    </p>
+                                    <a href="{{music.preview}}" class="secondary-content"><i class="material-icons">play_circle_outline</i></a>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </ul>
+                </div>
+            </div>
+        {% elif musics.data %}
+            <h4 class=center>Pesquisa</h4>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collection">
+                        {% for music in musics.data %}
+                            <li class="collection-item avatar">
+                                <img src="{{music.album.cover_small}}" alt="" class="circle">
+                                <span class="title truncate">{{music.title}}</span>
+                                <p class="truncate">{{music.artist.name}}<br>
+                                    <a href="{% url 'album' music.album.id %}">{{music.album.title}}</a>
+                                </p>
+                                <a href="{{music.preview}}" class="secondary-content"><i class="material-icons">play_circle_outline</i></a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div> 
+        {% endif %}
+    </div>
+</div>
