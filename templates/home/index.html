@@ -6,12 +6,18 @@
 
 {% block content %}
     <div class="my-5 p-5">
-        <div class="d-flex">
-            <img src="{{musics.picture_xl}}" width="200">
-            <div class="d-flex flex-column ps-5">
+        <div class="row">
+            <div class="col-12 col-md-auto">
+                <img src="{{musics.picture_xl}}" width="200" height="200" alt="Imagem da playlist">
+            </div>
+            <div class="col-12 col-md-auto">
                 <span class="fs-2 fw-bolder">{{musics.title}}</span>
-                <div><span class="material-icons bg-secondary fs-6 p-2 rounded-pill me-2">person</span>{{musics.creator.name}}</div>
-                <span class="">{{musics.description}}</span>
+                <div>
+                    <span class="material-icons bg-secondary fs-6 p-2 rounded-pill me-2" style="background-color: #DFDEE4 !important; color: #C1C2CA !important;">person</span>{{musics.creator.name}}
+                </div>
+                <div class="pt-3 pb-1">
+                    <span>{{musics.description}}</span>
+                </div>
                 <span>{{musics.nb_tracks}} faixas - {{musics.duration|convert_seconds_in_hours}} </span>
             </div>
         </div>
@@ -23,15 +29,19 @@
                         <th class="hover">Artista</th>
                         <th class="hover">Album</th>
                         <th class="hover">Adicionada</th>
-                        <th class="hover"><span class="material-icons fs-5 d-flex">schedule</span></th>
+                        <th class="hover">
+                            <span class="material-icons fs-5 d-flex">schedule</span>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for music in musics.tracks.data %}
-                        <tr>
+                        <tr class="hover">
                             <td class="truncate">
-                                <img src="{{music.album.cover_medium}}" width="40">
-                                <span class="ps-2">{{music.title}}</span>
+                                <img src="{{music.album.cover_medium}}" width="40" alt="Imagem do Album {{music.album.title}}">
+                                <a href="{{music.preview}}">
+                                    <span class="ps-2">{{music.title}}</span>
+                                </a>
                             </td>
                             <td class="truncate">{{music.artist.name}}</td>
                             <td class="truncate">{{music.album.title}}</td>
@@ -59,19 +69,20 @@ https://deezer.page.link/rMBmWMFMRiiipG8d6
 {% block css %}
     <!-- Import CSS Datatable -->
     <link href="{% static 'css/datatable/datatable.min.css' %}" rel="stylesheet">
-
+    <link href="{% static 'css/datatable/datatable.bootstrap.fixed-header.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/datatable/datatable.bootstrap.responsive.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block script %}
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Import Java Script Bootstrap -->
+    <script type="text/javascript" src="{% static 'js/datatable/jquery.datatable.min.js' %}"></script>
 
     <!-- Import Java Script Bootstrap -->
-    <!-- <script type="text/javascript" src="{% static 'js/datatable/jquery.datatable.min.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'js/datatable/datatable.min.js' %}"></script>
 
-    <!-- Import Java Script Bootstrap -->
-    <!-- <script type="text/javascript" src="{% static 'js/datatable/datatable.min.js' %}"></script> -->
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.2.4/js/dataTables.fixedHeader.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -79,9 +90,9 @@ https://deezer.page.link/rMBmWMFMRiiipG8d6
                 paging: false,
                 ordering: true,
                 info: false,
-                searching: false,
                 autoWidth: true,
                 deferRender: true,
+                responsive: true
             });
         });
     </script>
