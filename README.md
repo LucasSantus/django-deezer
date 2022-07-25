@@ -1,7 +1,7 @@
 <h1 align="center">Deezer</h1>
 
 <h6 align="center"> 
-	Se você quiser visualizar o sistema, clique <a href="https://github.com/LucasSantus/django-deezer">aqui</a>.
+	Se você quiser visualizar o sistema, clique <a href="https://deezer-django.herokuapp.com/">aqui</a>.
 </h6>
 
 <h3 id="sobre">:information_source: Sobre</h3>
