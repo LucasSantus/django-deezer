@@ -1,31 +1,47 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% load tags_extras %}
+
 {% block content %}
-
-<main>
-    <div class="col s12 m6 l10 center">
-        <h3 class="text-theme truncate">Albúm</h3>
-    </div>
-
-    <div class="container">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <ul class="collection">
-                        {% for album in list.tracks.data %}
-                        <li class="collection-item avatar">
-                            <img src="{{list.cover_small}}" alt="" class="circle">
-                            <span class="title truncate">{{album.title}}</span>
-                            <p class="truncate">{{album.artist.name}}</p>
-                            <a href="{{album.preview}}" class="secondary-content"><i class="material-icons">play_circle_outline</i></a>
-                        </li>
-                        {% endfor %} 
-                    
-                    </ul>
+    <div class="my-5 p-5 text-white">
+        <div class="row">
+            <div class="col-12 col-md-auto">
+                <img src="{{album.cover_big}}" width="200" height="200" alt="Imagem da playlist">
+            </div>
+            <div class="col-12 col-md-auto">
+                <span class="fs-2 fw-bolder">{{album.title}}</span>
+                <div>
+                    <img src="{{album.artist.picture_medium}}" width="50" height="50" alt="Imagem do album {{album.artist.name}}" class="fs-6 p-2 rounded-pill me-2">{{album.artist.name}}
                 </div>
-            </div>    
+                <span>{{album.nb_tracks}} faixas - {{album.duration|convert_seconds_in_hours}} - {{album.fans}} fans</span>
+            </div>
+        </div>
+        <div class="pt-4">
+            <table id="dataTable" class="table" style="width:100%">
+                <thead>
+                    <tr class="text-white">
+                        <th class="hover">Música</th>
+                        <th class="hover">Artistas Participantes</th>
+                        <th class="hover">Duração</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for music in album.tracks.data %}
+                        <tr>
+                            <td class="truncate">
+                                <img src="{{music.album.cover_medium}}" class="rounded ps-2" width="40" alt="Imagem do Album {{music.album.title}}">
+                                <a href="{{music.preview}}">
+                                    <span class="ps-2 truncate">{{music.title}}</span>
+                                </a>
+                            </td>
+                            <td class="truncate text-muted">{{music.artist.name}}</td>
+                            <td class="truncate text-muted">{{music.duration|convert_seconds_in_minutes}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-</main>
-
-{% endblock content %}
+{% endblock %}

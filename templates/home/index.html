@@ -5,7 +5,7 @@
 {% load tags_extras %}
 
 {% block content %}
-    <div class="my-5 p-5">
+    <div class="my-5 p-5 text-white">
         <div class="row">
             <div class="col-12 col-md-auto">
                 <img src="{{musics.picture_xl}}" width="200" height="200" alt="Imagem da playlist">
@@ -18,35 +18,37 @@
                 <div class="pt-3 pb-1">
                     <span>{{musics.description}}</span>
                 </div>
-                <span>{{musics.nb_tracks}} faixas - {{musics.duration|convert_seconds_in_hours}} </span>
+                <span>{{musics.nb_tracks}} faixas - {{musics.duration|convert_seconds_in_hours}}</span>
             </div>
         </div>
         <div>
             <table id="dataTable" class="table" style="width:100%">
                 <thead>
                     <tr>
-                        <th class="hover">Música</th>
-                        <th class="hover">Artista</th>
-                        <th class="hover">Album</th>
-                        <th class="hover">Adicionada</th>
-                        <th class="hover">
+                        <th class="hover text-white">Música</th>
+                        <th class="hover text-white">Artista</th>
+                        <th class="hover text-white">Album</th>
+                        <th class="hover text-white">Adicionada</th>
+                        <th class="hover text-white">
                             <span class="material-icons fs-5 d-flex">schedule</span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for music in musics.tracks.data %}
-                        <tr class="hover">
+                        <tr>
                             <td class="truncate">
-                                <img src="{{music.album.cover_medium}}" width="40" alt="Imagem do Album {{music.album.title}}">
+                                <img src="{{music.album.cover_medium}}" class="rounded ps-2" width="40" alt="Imagem do Album {{music.album.title}}">
                                 <a href="{{music.preview}}">
-                                    <span class="ps-2">{{music.title}}</span>
+                                    <span class="ps-2 truncate">{{music.title}}</span>
                                 </a>
                             </td>
-                            <td class="truncate">{{music.artist.name}}</td>
-                            <td class="truncate">{{music.album.title}}</td>
-                            <td>{{music.time_add|convert_number_in_date}}</td>
-                            <td>{{music.duration|convert_seconds_in_minutes}}</td>
+                            <td class="truncate text-white">{{music.artist.name}}</td>
+                            <td class="truncate text-white">
+                                <a href="{% url 'album' music.album.id %}">{{music.album.title}}</a>
+                            </td>
+                            <td class="truncate text-muted">{{music.time_add|convert_number_in_date}}</td>
+                            <td class="truncate text-muted">{{music.duration|convert_seconds_in_minutes}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -84,6 +86,10 @@ https://deezer.page.link/rMBmWMFMRiiipG8d6
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
 
+    <!-- <script type="text/javascript" src="{% static 'jsdatatable.bootstrap.fixed-header.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/datatable.responsive.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/datatable.bootstrap.responsive.min.js' %}"></script> -->
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dataTable').DataTable({
@@ -97,6 +103,8 @@ https://deezer.page.link/rMBmWMFMRiiipG8d6
         });
     </script>
 {% endblock %}
+
+
 
 <div class="container w-40">
         <form method="POST">
