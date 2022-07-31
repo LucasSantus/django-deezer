@@ -16,6 +16,21 @@
     text-decoration: underline !important;
 }
 
+/* SIDEBAR */
+.custom__sidebar{
+    background-color: #191922; 
+    border-right: 1px solid white;
+    width: 230px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+svg{
+    fill: white;
+}
+
 th{
     border-bottom-color: #EAEAEA !important;
     color: #6c757d !important;

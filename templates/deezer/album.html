@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="pt-4">
-            <table id="dataTable" class="table" style="width:100%">
+            <table id="dataTable" class="table w-100">
                 <thead>
                     <tr class="text-white">
                         <th class="hover">Música</th>
@@ -29,14 +29,20 @@
                 </thead>
                 <tbody>
                     {% for music in album.tracks.data %}
-                        <tr>
+                    <tr class="hover_color_datatable">
                             <td class="truncate">
                                 <img src="{{music.album.cover_medium}}" class="rounded ps-2" width="40" alt="Imagem do Album {{music.album.title}}">
-                                <a href="{{music.preview}}">
-                                    <span class="ps-2 truncate">{{music.title}}</span>
+                                <a href="{{music.preview}}" class="text-white hover_datatable">
+                                    <span class="ps-2">{{music.title}}</span>
                                 </a>
                             </td>
-                            <td class="truncate text-muted">{{music.artist.name}}</td>
+                            <td class="truncate">
+                                <a href="#" class="text-white hover_datatable">
+                                    <span class="text-white hover_datatable">
+                                        {{music.artist.name}}
+                                    </span>
+                                </a>
+                            </td>
                             <td class="truncate text-muted">{{music.duration|convert_seconds_in_minutes}}</td>
                         </tr>
                     {% endfor %}
