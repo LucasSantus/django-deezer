@@ -3,6 +3,19 @@
     opacity: .6 !important;
 }
 
+.hover_color_datatable:hover{
+    opacity: .5;
+    background-color: #191922;
+}
+
+.hover_datatable{
+    text-decoration: none !important;
+}
+
+.hover_datatable:hover{
+    text-decoration: underline !important;
+}
+
 th{
     border-bottom-color: #EAEAEA !important;
     color: #6c757d !important;
@@ -10,23 +23,20 @@ th{
 }
 
 td{
-    border: none
+    border: none;
 }
 
 /* BARRA ROLAGEM PERSONALIZADA */
-/* width */
 ::-webkit-scrollbar {
     width: 12px;
     
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     background: #191922;
     border-left: 1px solid #373749;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: rgb(82, 79, 79);
     border: 2px solid #373749;
@@ -34,7 +44,6 @@ td{
     height: 25rem;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
