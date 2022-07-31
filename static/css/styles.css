@@ -14,16 +14,29 @@ td{
 }
 
 /* BARRA ROLAGEM PERSONALIZADA */
-html {
-    scroll-behavior: smooth;
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+    
 }
 
-body::-webkit-scrollbar {
-    width: 10px
-} 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #191922;
+    border-left: 1px solid #373749;
+}
 
-body::-webkit-scrollbar-thumb {   
-    background-color: darkgrey;   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(82, 79, 79);
+    border: 2px solid #373749;
+    border-radius: 50px;
+    height: 25rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 /* BOOTSTRAP SELECTOR */
