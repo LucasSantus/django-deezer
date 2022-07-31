@@ -8,6 +8,7 @@ def album(request, id_album):
     url = f"https://deezerdevs-deezer.p.rapidapi.com/album/{id_album}"
     response = requests.request("GET", url, headers=API_HEADERS)
     album = json.loads(response.text)
+    print(album)
     context = {
         "album": album,
     }
